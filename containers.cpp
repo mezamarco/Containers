@@ -217,7 +217,7 @@ int main(){
 	myVector.push_back(22);
 
 	int vectorSize = myVector.size();
-	std::cout <<  "The size eof the Vector: " << vectorSize << std::endl;
+	std::cout <<  "The size of the Vector: " << vectorSize << std::endl;
      	std::cout << "Vector: ";
 
 
@@ -226,6 +226,7 @@ int main(){
 
 
 	int vectCounter = 0;
+
 	while(iter != iterEnd)
 	{
 		if(vectCounter != vectorSize - 1){
@@ -237,12 +238,56 @@ int main(){
 			std::cout << *iter<< "\n" << std::endl;
 			++iter;
 		}
+	
 	}
 	
 
 
+	/*Pair 
+	 */
+
+	std::pair<int, bool> myPair;
+
+	myPair.first = 22;
+	myPair.second = true;
+
+	std::cout << "My pair contairs the following: (" << myPair.first << " , " << myPair.second << ")"<< std::endl;
+	std::cout << std::endl;
 
 
+        /*Set of Pairs
+	 * A Set of pairs is automatically arranged from smallest to largest
+	 * Depending on what is in the position of first.
+	 *
+	 *
+	 * 	#include <set>
+	 * 	#include <iterator>
+         */
+	  
+	 std::set< std::pair<int,int> > mySetPair;
+
+	 mySetPair.insert( std::make_pair(22,45));
+	 mySetPair.insert( std::make_pair(24,67));
+	 mySetPair.insert( std::make_pair(78,5));
+	 mySetPair.insert( std::make_pair(3,56));
+	 mySetPair.insert( std::make_pair(87,45));
+	 mySetPair.insert( std::make_pair(22,75));
+	 mySetPair.insert( std::make_pair(22,45)); //This repeated element will not be added to the set
+
+	 //Use an iterator to print out all the pairs
+
+	 std::set<std::pair<int,int>>::iterator myIterator = mySetPair.begin();
+	 std::set<std::pair<int,int>>::iterator myIteratorEnd = mySetPair.end();
+
+	 std::cout << "The size of the set of pairs: " << mySetPair.size() << std::endl;
+	 std::cout << "Set of Pairs:" << std::endl;
+	 int k = 0;
+	 while(myIterator != myIteratorEnd)
+	 {
+	 	std::cout << "Element " <<k <<": " <<  myIterator->first << " , " << myIterator->second << std::endl;
+		++myIterator;
+		++k;
+	 }
 
 
 
