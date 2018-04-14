@@ -11,6 +11,10 @@ int makeMeYoung(int* age);
 void actYourAge(int& age);
 
 
+//Lets do an example of a Recursive function.
+int getFactorial(int number);
+
+
 int main(){
 
 
@@ -26,6 +30,7 @@ int main(){
 
 	std::cout << "The memory size of the character pointer is: " << sizeof(favChar) << std::endl;
         
+	//To get the ASCII value of pointer, Dereference the pointer then cast it with (int)
 	std::cout << "The ASCII value of character: M  is:  " << int(*favChar) << std::endl;
 
 
@@ -49,10 +54,10 @@ int main(){
 	++theArrayPointer;
 	std::cout << "Address: " << theArrayPointer << " The value is: " << *theArrayPointer << std::endl;
 	std::cout << "Increment theArrayPointer" << std::endl;
-	//By moving our pointer out of the array range, we will just get garbage.	
+	//By moving our pointer out of the array range, we have no issues but we will just get garbage.	
 	
 	//NOTE: an array name is just pointer to an array
-	//Therefore,
+	//Therefore, we can simply use the name of the array, numArr 
 	//std::cout << "Address: " << numbArr << " The value is: " << *numArr << std::endl;
 	//This will print the first memory address and the first value.
 	
@@ -69,7 +74,8 @@ int main(){
 	std::cout << "Your age is now:" << age  << std::endl;
 
 
-	//Abstract Data types (ADT)
+	//Abstract Data types (ADT)  Equivalent to saying Containers
+	
 	
 	
 	
@@ -291,6 +297,8 @@ int main(){
 
 
 
+	 //Call the recursive function
+	 std::cout<<"The factorial of 6 = " << getFactorial(6) << "\n\n\n" << std::endl;
 
 
 
@@ -309,3 +317,20 @@ void actYourAge(int& age){
 }
 
 
+int getFactorial(int number){
+  
+  int sum;
+  
+  std::cout<< "NUmber: "<< number <<std::endl;
+  
+  if(number == 1)
+  {
+	  sum = 1;
+  }
+  else
+  {
+    sum = getFactorial(number -1 ) * number;
+  }
+
+  return sum;
+}
