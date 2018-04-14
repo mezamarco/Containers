@@ -3,7 +3,9 @@
 #include <stack>
 #include <set>
 #include <vector>
-
+#include <map>
+#include <unordered_map>
+#include <iterator>
 
 //Function prototypes
 int makeMeYoung(int* age);
@@ -24,7 +26,7 @@ int main(){
 	char* favChar = &ch;
 
 
-	std::cout << "Address if the pointer: " << favChar << std::endl;
+	std::cout << "Address of the pointer: " << favChar << std::endl;
 	// lets derefence the pointer
 	std::cout << "Deference the pointer and we get back the value: " << *favChar << std::endl;
 
@@ -64,17 +66,30 @@ int main(){
 
 
 	//Lets talk about functions
-	//If you pass by reference or by a pointer the given variable will change its value as well
-	//When passing regularly then a copy of this variable is made and it has a local scope
-        int age = 100;
+	//NOTE: When passing argument to a function then a copy of this variable is made and it has a local scope
+	//This is pass-by-value.
+	
+	
+	//If you pass-by-reference or pass-by-pointer,
+	//The calling function can modify the contents of the given arguments
+
+        
+	int age = 100;
+	//Pass the address of the variable, because the expecting paramenter is a pointer
 	makeMeYoung(&age);
-	//we are passing the variable age as reference and therefore the function will change its value
 	std::cout << "Your age is now:" << age  << std::endl;
+	
+	//we are passing the variable age as reference and therefore the function will change its value
 	actYourAge(age);
 	std::cout << "Your age is now:" << age  << std::endl;
 
+	//When to use pass-by-reference and when to use pass-by-pointer
+	//Always use pass-by-reference, except for one case
+	//Use pass-by-pointer when NULL is a valid paramenter or if you want to reassing the pointer.
 
-	//Abstract Data types (ADT)  Equivalent to saying Containers
+
+
+	//Abstract Data types (ADT)  Equivalent to: Containers
 	
 	
 	
@@ -297,10 +312,78 @@ int main(){
 
 
 
+
+
+
+	/*Map
+	 * A map orders the elements according to what the first value is
+	 *
+	 * 	#include <map>
+	 */
+         std::map <int,char> myMap;
+	 
+	 //Lets populate our map
+
+	 myMap[55] = 'C';
+	 myMap[443] = 'O';
+	 myMap[11] = 'R';
+	 myMap[8] = 'M';
+	 myMap[9] = 'A';
+
+	 //Print out a single value
+	 std::cout << "\nCreating a map:\nA single value of my map is:" << myMap[11]  << std::endl;
+
+       	 //Lets use an iterator in order to traverse my map
+
+	 std::map<int,char>::iterator myIteratorSecond = myMap.begin();
+	 std::map<int,char>::iterator myIteratorSecondEnd = myMap.end();
+
+	 while(myIteratorSecond != myIteratorSecondEnd)
+	 {
+	 
+		 std::cout << "Mapping: "<< myIteratorSecond->first << " => " << myIteratorSecond->second << std::endl;
+		 ++myIteratorSecond;
+	 }
+
+
+	 /*Unordered Map
+	  * The elements are randomly ordered
+	  *
+	  * 	#include <unordered_map>
+	  */
+
+         std::unordered_map <int,std::string> myUnorderedMap;
+	 
+	 //Lets populate our map
+
+	 myUnorderedMap[55] = "Hello";
+	 myUnorderedMap[443] = "Marco";
+	 myUnorderedMap[11] = "How";
+	 myUnorderedMap[8] = "Are";
+	 myUnorderedMap[9] = "You?";
+
+	 //Print out a single value
+	 std::cout << "\nCreating an Unordered Map:\nA single value of my map is:" << myUnorderedMap[11]  << std::endl;
+
+       	 //Lets use an iterator in order to traverse my map
+
+	 std::unordered_map<int,std::string>::iterator myIteratorThird = myUnorderedMap.begin();
+	 std::unordered_map<int,std::string>::iterator myIteratorThirdEnd = myUnorderedMap.end();
+
+	 while(myIteratorThird != myIteratorThirdEnd)
+	 {
+	 
+		std::cout << "Unordered Mapping: "<< myIteratorThird->first 
+				<< " => " << myIteratorThird->second << std::endl;
+
+		++myIteratorThird;
+	 }	
+
+
+
+
 	 //Call the recursive function
-	 std::cout<<"The factorial of 6 = " << getFactorial(6) << "\n\n\n" << std::endl;
-
-
+	 std::cout<<"\n\nThe factorial of 6 = " << getFactorial(6) << "\n\n\n" << std::endl;
 
 }
 
@@ -312,7 +395,7 @@ int makeMeYoung(int* age){
  return 1;
 }
 
-void actYourAge(int& age){
+void actYourAge(int &age){
   age = 31;
 }
 
@@ -320,8 +403,6 @@ void actYourAge(int& age){
 int getFactorial(int number){
   
   int sum;
-  
-  std::cout<< "NUmber: "<< number <<std::endl;
   
   if(number == 1)
   {
