@@ -318,6 +318,12 @@ int main(){
 	/*Map
 	 * A map orders the elements according to what the first value is
 	 *
+	 * NOTE: A map is equivalent to a RED-BLACK-TREE
+	 * Insert O(log n)
+	 * Find O(log n)
+	 * Delete O(log n)
+	 *
+	 *
 	 * 	#include <map>
 	 */
          std::map <int,char> myMap;
@@ -348,6 +354,14 @@ int main(){
 
 	 /*Unordered Map
 	  * The elements are randomly ordered
+	  *
+	  * NOTE: Unordered Map is equivalent to a HASHMAP
+	  * Insert 	Single Element insertions:        	Average Case: O(1), Worst Case: O(n)
+	  *		Multiple Element insertions: 		
+	  *			Average Case: O(Linear in the number of elements inserted)
+	  *
+	  * Find      Average Case: O(1),  Worst Case: O(n)
+	  *
 	  *
 	  * 	#include <unordered_map>
 	  */
