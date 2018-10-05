@@ -6,7 +6,6 @@
 #include <map>
 #include <unordered_map>
 #include <iterator>
-
 //Function prototypes
 int makeMeYoung(int* age);
 
@@ -57,7 +56,7 @@ int main(){
 	std::cout << "Address: " << theArrayPointer << " The value is: " << *theArrayPointer << std::endl;
 	std::cout << "Increment theArrayPointer" << std::endl;
 	//By moving our pointer out of the array range, we have no issues but we will just get garbage.	
-	
+
 	//NOTE: an array name is just pointer to an array
 	//Therefore, we can simply use the name of the array, numArr 
 	//std::cout << "Address: " << numbArr << " The value is: " << *numArr << std::endl;
@@ -75,7 +74,7 @@ int main(){
 
         
 	int age = 100;
-	//Pass the address of the variable, because the expecting paramenter is a pointer
+	//Pass the address of the variable, because the expecting paramenter is a pointer, therefore we are passing by reference
 	makeMeYoung(&age);
 	std::cout << "Your age is now:" << age  << std::endl;
 	
@@ -172,6 +171,35 @@ int main(){
 		}
 	}
 
+	
+	//Lets talk about a priority queue, how do we create a min heap
+	//The smallest elements go in the front
+	std::priority_queue<int, std::vector<int>, std::greater<int>> minHeapPQ;
+
+	//Lets talk about a priority queue, how do we create a max heap
+	//The biggest element go in the front
+	std::priority_queue<int, std::vector<int>, std::less<int>> maxHeapPQ;
+
+	int myArr[4] = {8,6,23,20};
+	for(int m = 0; m < 4; m++){
+		minHeapPQ.push(myArr[m]);
+		maxHeapPQ.push(myArr[m]);
+	}
+
+	//Lets print out what is in our min heap and the max heap
+	std::cout << "\nPrinting the minHeap PQ:\n";
+	while(!minHeapPQ.empty()){
+		std::cout << minHeapPQ.top() << "  ";
+	     	minHeapPQ.pop();	
+	}
+
+	std::cout << "\nPrinting the maxHeap PQ:\n";
+	while(!maxHeapPQ.empty()){
+		std::cout << maxHeapPQ.top() << "  ";
+	     	maxHeapPQ.pop();	
+	}
+
+	std::cout << "\n\n"; 
 
 
 	/*Set: It has two properties:  1: Ascending Order  2: No repeated elements
@@ -264,7 +292,7 @@ int main(){
 	
 
 
-	/*Pair 
+	/*Pair (This is only one specific pair) 
 	 */
 
 	std::pair<int, bool> myPair;
@@ -318,7 +346,7 @@ int main(){
 	/*Map
 	 * A map orders the elements according to what the first value is
 	 *
-	 * NOTE: A map is equivalent to a RED-BLACK-TREE
+	 * NOTE: A map is equivalent to a RED-BLACK-TREE, this is a balance tree, implies everything O(log n) 
 	 * Insert O(log n)
 	 * Find O(log n)
 	 * Delete O(log n)
